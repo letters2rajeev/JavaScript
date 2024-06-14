@@ -1,0 +1,68 @@
+<html>
+    <head><title>Rock Paper Scissors</title>
+    <script>
+        const moves = ['rock','paper','scissors'];
+
+        const score = {
+            wins: 0,
+            losses: 0,
+            ties: 0
+        };
+
+        function getComputerMove(){
+            return moves[parseInt(Math.random()*3)];
+            
+        }
+
+        function playGame(playerMove) {
+            const computerMove = getComputerMove();
+            //alert(computerMove+" : "+playerMove);
+            if (playerMove === 'scissors'){
+                if(computerMove === 'rock'){
+                    score.losses += 1;
+                } else if (computerMove === 'paper'){
+                    score.wins += 1;
+                } else {
+                    score.ties += 1;
+                }
+            } else if (playerMove === 'rock'){
+                if(computerMove === 'scissors'){
+                    score.wins += 1;
+                } else if (computerMove === 'paper'){
+                    score.losses += 1;
+                } else {
+                    score.ties += 1;
+                }
+            } else if (playerMove === 'paper'){
+                if(computerMove === 'scissors'){
+                    score.losses += 1;
+                } else if (computerMove === 'rock'){
+                    score.wins += 1;
+                } else {
+                    score.ties += 1;
+                }
+            }
+            displayScore(computerMove, playerMove);
+        }
+        function displayScore(computerMove, playerMove){
+            alert("Computer Move: " + computerMove + " :: Your Move: " + playerMove);
+            document.querySelector(".score-wins").innerHTML = score.wins;
+            document.querySelector(".score-loses").innerHTML = score.losses;
+            document.querySelector(".score-ties").innerHTML = score.ties;
+        }
+    </script>
+    
+    </head>
+    <body>
+        <h1>Rock Paper Scissors</h1>
+        <button onclick="playGame('rock')">Rock</button>
+        <button onclick="playGame('paper')">Papper</button>
+        <button onclick="playGame('scissors')">Scissors</button>
+        <table>
+            <tr><td>Wins:</td><td class="score-wins"></td></tr>
+            <tr><td>Loses:</td><td class="score-loses"></td></tr>
+            <tr><td>Ties:</td><td class="score-ties"></td></tr>
+        </table>
+        <div class="score-board"></div>
+    </body>
+</html>
